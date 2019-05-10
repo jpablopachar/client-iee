@@ -1,0 +1,19 @@
+<h1 class="font-weight-bold mb-md-4">{{titulo}}</h1>
+<div class="row">
+  <div class="col-md-6">
+    <div class="alert alert-success" *ngIf="estado == 'exito'">
+      El rol se ha registrado correctamente.
+    </div>
+    <div class="alert alert-danger" *ngIf="estado == 'error'">
+      El rol no se ha podido guardar, ¡inténtalo de nuevo!
+    </div>
+    <form #registrarRolForm="ngForm" (ngSubmit)="onSubmit(registrarRolForm)">
+      <div class="form-group col-md-8 pl-0">
+        <label class="font-weight-bold">Nombre del rol</label>
+        <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="rol.name" required>
+        <span *ngIf="!name.valid && name.touched">¡El nombre del rol es obligatorio!</span>
+      </div>
+      <button type="submit" class="btn btn-warning" [disabled]="!registrarRolForm.form.valid">Crear</button>
+    </form>
+  </div>
+</div>

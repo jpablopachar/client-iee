@@ -1,0 +1,53 @@
+<div class="row">
+  <div class="col-md-5">
+    <h2 class="font-weight-bold mb-md-4">{{titulo}}</h2>
+    <div class="alert alert-success" *ngIf="estado == 'exito'">
+      La sala se ha registrado correctamente.
+    </div>
+    <div class="alert alert-danger" *ngIf="estado == 'error'">
+      El registro no se ha podido completar, ¡inténtalo de nuevo!
+    </div>
+    <form #registrarSalaForm="ngForm" (ngSubmit)="onSubmit(registrarSalaForm)">
+      <!--<input type="hidden" name="_id" #_id="ngModel" [(ngModel)]="_sala._id">-->
+      <div class="form-group col-md-8 pl-0">
+        <label class="font-weight-bold">Nombre de la Sala</label>
+        <input type="text" class="form-control" name="name" #name="ngModel" [(ngModel)]="sala.name" required>
+        <span *ngIf="!name.valid && name.touched">¡El nombre de la sala es obligatorio!</span>
+      </div>
+      <div class="form-group col-md-8 pl-0">
+        <label class="font-weight-bold">Descripción</label>
+        <input type="text" class="form-control" name="description" #description="ngModel" [(ngModel)]="sala.description" required>
+        <span *ngIf="!description.valid && description.touched">¡La descripción es obligatorio!</span>
+      </div>
+      <button type="submit" class="btn btn-warning" [disabled]="!registrarSalaForm.form.valid">Registrar</button>
+    </form>
+  </div>
+  <div class="col-md-7">
+    <h2 class="font-weight-bold mb-md-4">Listado de salas</h2>
+    <div class="card">
+      <div class="card-body p-0">
+        <table class="table">
+          <thead>
+            <tr class="bg-dark">
+              <th scope="col" class="text-warning">QR Code</th>
+              <th scope="col" class="text-warning">Nombre</th>
+              <th scope="col" class="text-warning">Descripción</th>
+              <th scope="col" class="text-warning">Operaciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let sala of salas">
+              <td><a class="btn btn-light" href="http://api.qrserver.com/v1/create-qr-code/?size=200x200&data={{ sala._id }}" target="_blank"><i class="fas fa-eye"></i></a></td>
+              <td>{{sala.name}}</td>
+              <td>{{sala.description}}</td>
+              <td>
+                <a class="btn btn-warning" (click)="editarSala(sala)"><i class="fas fa-edit"></i></a>
+                <a class="btn btn-danger" (click)="eliminarSala(sala._id)"><i class="far fa-trash-alt"></i></a>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

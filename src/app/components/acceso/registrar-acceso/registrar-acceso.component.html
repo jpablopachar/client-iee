@@ -1,0 +1,31 @@
+<div class="row">
+  <div class="col-md-9 mx-auto">
+    <h2 class="font-weight-bold mb-md-4">Listado de accesos</h2>
+    <div class="card">
+      <div class="card-body p-0">
+        <table class="table">
+          <thead>
+          <tr class="bg-dark">
+            <th scope="col" class="text-warning">Fecha</th>
+            <th scope="col" class="text-warning">Hora</th>
+            <th scope="col" class="text-warning">Sala</th>
+            <th scope="col" class="text-warning">Estado</th>
+            <th scope="col" class="text-warning">Tipo de acceso</th>
+            <th scope="col" class="text-warning">Usuario</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let permiso of permisos">
+            <td>{{permiso.date}}</td>
+            <td>{{permiso.hour}}</td>
+            <td>{{permiso.sala}}</td>
+            <td>{{permiso.state}}</td>
+            <td>{{permiso.typeAccess}}</td>
+            <td>{{permiso.user}}</td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<h1 class="font-weight-bold mb-md-4">{{titulo}}</h1>
+<div class="row">
+  <div class="col-md-6">
+    <div class="alert alert-success" *ngIf="estado == 'exito'">
+      El usuario se ha registrado correctamente.
+    </div>
+    <!--<div class="alert alert-danger" *ngIf="estado == 'error'">
+      El registro no se ha podido completar, ¡inténtalo de nuevo!
+    </div>-->
+    <form #registrarUsuarioForm="ngForm" (ngSubmit)="onSubmit(registrarUsuarioForm)">
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label class="font-weight-bold">Primer Nombre</label>
+          <input type="text" class="form-control" name="firstName" #firstName="ngModel" [(ngModel)]="usuario.firstName" required>
+          <span *ngIf="!firstName.valid && firstName.touched">¡El primer nombre es obligatorio!</span>
+        </div>
+        <div class="form-group col-md-6">
+          <label class="font-weight-bold">Segundo Nombre</label>
+          <input type="text" class="form-control" name="secondName" #secondName="ngModel" [(ngModel)]="usuario.secondName" required>
+          <span *ngIf="!secondName.valid && secondName.touched">¡El segundo nombre es obligatorio!</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label class="font-weight-bold">Primer Apellido</label>
+          <input type="text" class="form-control" name="firstSurname" #firstSurname="ngModel" [(ngModel)]="usuario.firstSurname" required>
+          <span *ngIf="!firstSurname.valid && firstSurname.touched">¡El primer apellido es obligatorio!</span>
+        </div>
+        <div class="form-group col-md-6">
+          <label class="font-weight-bold">Segundo Apellido</label>
+          <input type="text" class="form-control" name="secondSurname" #secondSurname="ngModel" [(ngModel)]="usuario.secondSurname" required>
+          <span *ngIf="!secondSurname.valid && secondSurname.touched">¡El segundo apellido es obligatorio!</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+            <label class="font-weight-bold">Nombre de usuario</label>
+            <input type="text" class="form-control" name="username" #username="ngModel" [(ngModel)]="usuario.username" required>
+            <span *ngIf="!username.valid && username.touched">¡El nombre de usuario es obligatorio!</span>
+        </div>
+        <div class="form-group col-md-6">
+          <label class="font-weight-bold">Correo</label>
+          <input type="email" class="form-control" name="email" #email="ngModel" [(ngModel)]="usuario.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+          <span *ngIf="!email.valid && email.touched">¡El correo es obligatorio!</span>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label class="font-weight-bold">Contraseña</label>
+          <input type="password" class="form-control" name="password" #password="ngModel" [(ngModel)]="usuario.password" required>
+          <span *ngIf="!password.valid && password.touched">¡La contraseña es obligatoria!</span>
+        </div>
+        <div class="form-group col-md-6">
+          <label>Rol</label>
+          <select name="rol" #rol="ngModel" [(ngModel)]="usuario.rol" class="form-control" required>
+            <option  *ngFor="let rol of roles" value="{{rol._id}}">{{rol.name}}</option>
+          </select>
+          <span *ngIf="!rol.valid && rol.touched">¡Debe seleccionar un rol!</span>
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary" [disabled]="!registrarUsuarioForm.form.valid">Registrarse</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,24 @@
+<h1 class="font-weight-bold mb-md-4">{{titulo}}</h1>
+<div class="row">
+  <div class="col-md-5">
+    <div class="alert alert-success" *ngIf="estado == 'exito'">
+      Te has identificado correctamente. ¡Bienvenido!
+    </div>
+    <div class="alert alert-danger" *ngIf="estado == 'error'">
+      No te has podido identificar correctamente.
+    </div>
+    <form #iniciarSesionForm="ngForm" (ngSubmit)="onSubmit(iniciarSesionForm)">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" name="email" class="form-control" #email="ngModel" [(ngModel)]="usuario.email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required>
+        <span *ngIf="email.valid && email.touched">¡El email es obligatorio!</span>
+      </div>
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" name="password" class="form-control" #password="ngModel" [(ngModel)]="usuario.password" required>
+        <span *ngIf="password.valid && password.touched">¡El password es obligatorio!</span>
+      </div>
+      <button type="submit" class="btn btn-warning" [disabled]="!iniciarSesionForm.form.valid">{{titulo}}</button>
+    </form>
+  </div>
+</div>

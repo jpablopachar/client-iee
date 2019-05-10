@@ -1,0 +1,26 @@
+<div class="h2 font-weingth-bold py-3">
+  {{titulo}}
+</div>
+<div class="col-md-10 mx-auto">
+  <table class="table">
+    <thead class="bg-dark">
+      <tr>
+        <th scope="col" class="text-warning">Nombre</th>
+        <th scope="col" class="text-warning">Apellido</th>
+        <th scope="col" class="text-warning">Username</th>
+        <th scope="col" class="text-warning">Operaciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let usuario of usuarios">
+        <td>{{usuario.firstName}}</td>
+        <td>{{usuario.firstSurname}}</td>
+        <td>{{usuario.username}}</td>
+        <td>
+          <!--<a class="btn btn-warning mr-2" [routerLink]="['/actualizarUsuario']"><i class="fas fa-edit"></i></a>-->
+          <a class="btn btn-danger" (click)="eliminarUsuario(usuario._id)"><i class="far fa-trash-alt"></i></a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
